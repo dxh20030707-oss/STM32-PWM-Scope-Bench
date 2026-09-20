@@ -1,0 +1,27 @@
+--cpu Cortex-M3
+"10ms\startup_stm32f103xb.o"
+"10ms\main.o"
+"10ms\gpio.o"
+"10ms\pwm_gen.o"
+"10ms\pwm_cap.o"
+"10ms\cli.o"
+"10ms\stm32f1xx_it.o"
+"10ms\stm32f1xx_hal_msp.o"
+"10ms\stm32f1xx_hal_gpio_ex.o"
+"10ms\stm32f1xx_hal_tim.o"
+"10ms\stm32f1xx_hal_tim_ex.o"
+"10ms\stm32f1xx_hal.o"
+"10ms\stm32f1xx_hal_rcc.o"
+"10ms\stm32f1xx_hal_rcc_ex.o"
+"10ms\stm32f1xx_hal_gpio.o"
+"10ms\stm32f1xx_hal_dma.o"
+"10ms\stm32f1xx_hal_cortex.o"
+"10ms\stm32f1xx_hal_pwr.o"
+"10ms\stm32f1xx_hal_flash.o"
+"10ms\stm32f1xx_hal_flash_ex.o"
+"10ms\stm32f1xx_hal_exti.o"
+"10ms\system_stm32f1xx.o"
+--strict --scatter "10MS\10MS.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "10MS.map" -o 10MS\10MS.axf
