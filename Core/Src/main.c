@@ -103,7 +103,15 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    CLI_Task();        /* 解析串口命令：f/d/r/start/stop/?/help */
+    CLI_Task();        /* 维持原样：全速解析串口命令，零延迟 */
+
+    /* 非阻塞心跳灯：每 500ms 翻转一次 PC13，不阻碍 CLI_Task 运行 */
+    static uint32_t last_blink = 0;
+    if (HAL_GetTick() - last_blink >= 500)
+    {
+      last_blink = HAL_GetTick();
+      HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
+    }
   }
   /* USER CODE END 3 */
 }
@@ -158,13 +166,13 @@ void SystemClock_Config(void)
 void Error_Handler(void)
 {
   /* USER CODE BEGIN Error_Handler_Debug */
-  /* User can add his own implementation to report the HAL error return state */
   __disable_irq();
   while (1)
   {
   }
   /* USER CODE END Error_Handler_Debug */
 }
+
 #ifdef USE_FULL_ASSERT
 /**
   * @brief  Reports the name of the source file and the source line number
@@ -176,8 +184,6 @@ void Error_Handler(void)
 void assert_failed(uint8_t *file, uint32_t line)
 {
   /* USER CODE BEGIN 6 */
-  /* User can add his own implementation to report the file name and line number,
-     ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
   /* USER CODE END 6 */
 }
 #endif /* USE_FULL_ASSERT */

@@ -47,6 +47,20 @@ void MX_GPIO_Init(void)
   __HAL_RCC_GPIOD_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
 
+  /* USER CODE BEGIN 2 */
+  GPIO_InitTypeDef GPIO_InitStruct = {0};
+
+  /* 默认设置高电平（BluePill PC13 为低电平点亮，初始先关闭） */
+  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_SET);
+
+  /* 初始化 PC13 为推挽输出模式，不改变其他引脚状态 */
+  GPIO_InitStruct.Pin = GPIO_PIN_13;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+  /* USER CODE END 2 */
+
 }
 
 /* USER CODE BEGIN 2 */
