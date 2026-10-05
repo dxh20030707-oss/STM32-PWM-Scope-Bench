@@ -37,10 +37,14 @@ static uint32_t s_psc = PWM_CAP_PSC_DEFAULT;
 /* ----------------------------------------------------------------------------
  * 初始化 TIM3 为 PWM 输入捕获模式（PA6 = TIM3_CH1）
  * -------------------------------------------------------------------------- */
-void PWM_Cap_Init(void)
+/**
+ * @brief PWM输入捕获初始化函数
+ * 该函数配置TIM3的输入捕获功能，用于测量PWM信号的周期和占空比
+ */
+void PWM_Cap_Init(void)  //
 {
-  GPIO_InitTypeDef   gpio = {0};
-  TIM_IC_InitTypeDef ic   = {0};
+  GPIO_InitTypeDef   gpio = {0};    // GPIO初始化结构体变量
+  TIM_IC_InitTypeDef ic   = {0};    // 定时器输入捕获初始化结构体变量
 
   /* 1. 开时钟 */
   __HAL_RCC_GPIOA_CLK_ENABLE();
